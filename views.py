@@ -1,6 +1,30 @@
-from utils import load_data, load_template
+from utils import load_data, load_template, add_json
+import urllib.parse as up
 
-def index():
+def index(request):
+    # A string de request sempre começa com o tipo da requisição (ex: GET, POST)
+    if request.startswith('POST'):
+        print("a"*100)
+        request = request.replace('\r', '')  # Remove caracteres indesejados
+        # Cabeçalho e corpo estão sempre separados por duas quebras de linha
+        partes = request.split('\n\n')
+        corpo = partes[1]
+        params = {}
+        # Preencha o dicionário params com as informações do corpo da requisição
+        # O dicionário conterá dois valores, o título e a descrição.
+        # Posteriormente pode ser interessante criar uma função que recebe a
+        # requisição e devolve os parâmetros para desacoplar esta lógica.
+        # Dica: use o método split da string e a função unquote_plus
+        for chave_valor in corpo.split('&'):
+            print(chave_valor)
+            spaces = chave_valor.split('=')
+            if spaces[0] == 'titulo':
+                params['titulo'] = up.unquote_plus(spaces[1])
+            if spaces[0] == 'detalhes':
+                params['detalhes'] = up.unquote_plus(spaces[1])
+        print(params)
+        #add_json('notes.json', params)
+
     # Cria uma lista de <li>'s para cada anotação
     # Se tiver curiosidade: https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
     note_template = load_template('components/note.html')
