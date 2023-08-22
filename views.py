@@ -1,4 +1,4 @@
-from utils import load_data, load_template, add_json
+from utils import load_data, load_template, add_anotacao, build_response
 import urllib.parse as up
 
 def index(request):
@@ -15,15 +15,16 @@ def index(request):
         # Posteriormente pode ser interessante criar uma função que recebe a
         # requisição e devolve os parâmetros para desacoplar esta lógica.
         # Dica: use o método split da string e a função unquote_plus
-        for chave_valor in corpo.split('&'):
+        for chave_valor in corpo.split("&"):
             print(chave_valor)
-            spaces = chave_valor.split('=')
-            if spaces[0] == 'titulo':
-                params['titulo'] = up.unquote_plus(spaces[1])
-            if spaces[0] == 'detalhes':
-                params['detalhes'] = up.unquote_plus(spaces[1])
+            spaces = chave_valor.split("=")
+            if spaces[0] == "titulo":
+                params["titulo"] = up.unquote_plus(spaces[1])
+            if spaces[0] == "detalhes":
+                params["detalhes"] = up.unquote_plus(spaces[1])
         print(params)
-        #add_json('notes.json', params)
+        add_anotacao(params)
+        return build_response(code=303, reason='See Other', headers='Location: /')
 
     # Cria uma lista de <li>'s para cada anotação
     # Se tiver curiosidade: https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
@@ -38,4 +39,4 @@ def index(request):
     #     notes_li.append(NOTE_TEMPLATE.format(title=dados['titulo'], details=dados['detalhes']))
     notes = '\n'.join(notes_li)
 
-    return load_template('index.html').format(notes=notes).encode()
+    return build_response(body=load_template('index.html').format(notes=notes))
