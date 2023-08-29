@@ -127,6 +127,9 @@ class DatabaseTestCase(unittest.TestCase):
             raise SyntaxError("Algo deu errado! Veja se não esqueceu as aspas em torno dos valores.")
 
         notes = sorted(db.get_all(), key=lambda n: n.title)
+        print(data)
+        print("a"*50)
+        print(notes)
 
 
         data[1].title = new_title
