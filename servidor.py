@@ -18,8 +18,8 @@ while True:
     client_connection, client_address = server_socket.accept()
 
     request = client_connection.recv(1024).decode()
-    print('*'*100)
-    print(request)
+    #print('*'*100)
+    #print(request)
 
     route = extract_route(request)
 

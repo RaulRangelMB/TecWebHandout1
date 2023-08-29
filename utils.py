@@ -1,9 +1,13 @@
 import json
 
 def extract_route(request):
+    print(request)
     split1 = request.split("\n")[0]
+    print(split1)
     split2 = split1.split(" ")[1]
+    print(split2)
     route = split2[1:]
+    print(route)
     return route
 
 def read_file(path):
