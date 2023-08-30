@@ -1,13 +1,9 @@
 import json
+from database import Database, Note
 
 def extract_route(request):
-    print(request)
-    split1 = request.split("\n")[0]
-    print(split1)
-    split2 = split1.split(" ")[1]
-    print(split2)
+    split2 = request.split(" ")[1]
     route = split2[1:]
-    print(route)
     return route
 
 def read_file(path):
@@ -15,22 +11,26 @@ def read_file(path):
     lines = file.read()
     return lines
 
-def load_data(path):
-    filepath = 'data/' + path
-    file = read_file(filepath)
-    return json.loads(file)
+def load_data():
+    # filepath = 'data/' + path
+    # file = read_file(filepath)
+    # return json.loads(file)
+    db = Database('banco')
+    return db.get_all()
 
 def load_template(path):
     filepath = 'templates/' + path
-    file = open(filepath, mode="r")
+    file = open(filepath, mode="r", encoding="utf-8")
     return file.read()
 
 def add_anotacao(params):
-    notes = load_data("notes.json")
-    notes.append(params)
-    print(notes)
-    with open("data/notes.json",'w',encoding="utf-8") as myjson:
-        myjson.write(str(notes).replace("'",'"'))
+    # notes = load_data("notes.json")
+    # notes.append(params)
+    # print(notes)
+    # with open("data/notes.json",'w',encoding="utf-8") as myjson:
+    #     myjson.write(str(notes).replace("'",'"'))
+    db = Database('banco')
+    db.add(Note('',params['title'],params['content']))
 
 def build_response(body='', code=200, reason='OK', headers=''):
     if len(headers) > 0:

@@ -1,4 +1,5 @@
 from utils import load_data, load_template, add_anotacao, build_response
+from database import Database, Note
 import urllib.parse as up
 
 def index(request):
@@ -29,7 +30,7 @@ def index(request):
     # Cria uma lista de <li>'s para cada anotação
     # Se tiver curiosidade: https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
     note_template = load_template('components/note.html')
-    notes_li = [note_template.format(title=dados['titulo'], details=dados['detalhes']) for dados in load_data('notes.json')]
+    notes_li = [note_template.format(title=note.title, details=note.content) for note in load_data()]
     # Método com for
     # notes_li = []
     # for dados in load_data('notes.json'):
