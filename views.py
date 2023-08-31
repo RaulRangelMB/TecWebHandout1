@@ -41,3 +41,33 @@ def deleta(id):
     db = Database('banco')
     db.delete(int(id))
     return build_response(code=303, reason='See Other', headers='Location: /')
+
+def update(request, id):
+    '''
+    # A string de request sempre começa com o tipo da requisição (ex: GET, POST)
+    if request.startswith('POST'):
+        print("a"*100)
+        request = request.replace('\r', '')  # Remove caracteres indesejados
+        # Cabeçalho e corpo estão sempre separados por duas quebras de linha
+        partes = request.split('\n\n')
+        corpo = partes[1]
+        params = {}
+        # Preencha o dicionário params com as informações do corpo da requisição
+        # O dicionário conterá dois valores, o título e a descrição.
+        # Posteriormente pode ser interessante criar uma função que recebe a
+        # requisição e devolve os parâmetros para desacoplar esta lógica.
+        # Dica: use o método split da string e a função unquote_plus
+        for chave_valor in corpo.split("&"):
+            spaces = chave_valor.split("=")
+            if spaces[0] == "titulo":
+                params["titulo"] = up.unquote_plus(spaces[1])
+            if spaces[0] == "detalhes":
+                params["detalhes"] = up.unquote_plus(spaces[1])
+        add_anotacao(params)
+        return build_response(body=load_template('update.html'))
+    '''
+    notes = load_data()
+    for note in notes:
+        if note.id == int(id):
+            print(note)
+            return build_response(body=load_template('update.html').format(titulo=note.title, detalhes=note.content))

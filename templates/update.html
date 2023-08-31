@@ -27,18 +27,21 @@
     <main class="container">
       <!-- method="post" foi removido apenas para o exemplo funcionar sem o servidor -->
       <form class="form-card">
-        <input
+        <textarea
           class="form-card-title"
           type="text"
           name="titulo"
-          placeholder="Título"
-        />
+          placeholder="Título">
+        {titulo}
+        </textarea>
         <textarea
           class="autoresize"
           name="detalhes"
-          placeholder="Digite o conteúdo..."
-        ></textarea>
-        <button class="btn" type="submit">Criar</button>
+          placeholder="Digite o conteúdo...">
+          {detalhes}
+        </textarea>
+        <button class="btn" type="submit">Salvar</button>
+        <button class="btn" type="submit">Cancelar</button>
       </form>
       
     </main>

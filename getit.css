@@ -76,6 +76,7 @@ body {
   font-size: 1.7em;
   border: none;
   padding-bottom: 15px;
+  resize: none;
 }
 
 .autoresize{
