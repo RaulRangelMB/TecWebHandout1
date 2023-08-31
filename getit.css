@@ -42,6 +42,19 @@ body {
   padding: 0.3em 0.8em 0.3em 0.1em;
 }
 
+.title{
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+}
+
+.botaozinho{
+  height: 12px;
+  width: 12px;
+  padding: 1px;
+  padding-right: 6px;
+}
+
 .container{
   display: flex;
   flex-direction: column;

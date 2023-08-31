@@ -28,6 +28,12 @@ while True:
         response = build_response() + read_file(filepath)
     elif route == '':
         response = index(request)
+    #elif route.startswith('delete'):
+        #id = route.split('/')[-1]
+        #delete(id)
+    #elif route.startswith('edit'):
+        #id = route.split('/')[-1]
+        #edit(id)
     else:
         response = build_response()
     
