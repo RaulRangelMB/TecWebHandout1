@@ -2,8 +2,7 @@ import json
 from database import Database, Note
 
 def extract_route(request):
-    split2 = request.split(" ")[1]
-    route = split2[1:]
+    route = request.split(" ")[1][1:]
     return route
 
 def read_file(path):
