@@ -29,6 +29,11 @@ class Database:
             lista.append(note)
         return lista
     
+    def get_note(self, id):
+        cursor = self.conn.execute(f"SELECT id, title, content FROM note WHERE id = {id}")
+        linha = cursor.fetchone()
+        return Note(linha[0], linha[1], linha[2])
+    
     def update(self, entry : Note):
         cursor = self.conn.cursor()
         cursor.execute(f"UPDATE note SET title = '{entry.title}', content = '{entry.content}' WHERE id = {entry.id}")

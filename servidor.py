@@ -24,7 +24,7 @@ while True:
     route = extract_route(request)
 
     filepath = CUR_DIR / route
-    print(route)
+    #print(route)
     if filepath.is_file():
         response = build_response() + read_file(filepath)
     elif route == '':
@@ -33,7 +33,8 @@ while True:
         id = route.split('/')[-1]
         response = deleta(id)
     elif route.startswith('update'):
-        id = route.split('/')[-1]
+        print(route)
+        id = route.split('/')[1]
         response = update(request, id)
     else:
         response = build_response()
