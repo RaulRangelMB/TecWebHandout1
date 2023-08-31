@@ -17,13 +17,11 @@ def index(request):
         # requisição e devolve os parâmetros para desacoplar esta lógica.
         # Dica: use o método split da string e a função unquote_plus
         for chave_valor in corpo.split("&"):
-            print(chave_valor)
             spaces = chave_valor.split("=")
             if spaces[0] == "titulo":
                 params["titulo"] = up.unquote_plus(spaces[1])
             if spaces[0] == "detalhes":
                 params["detalhes"] = up.unquote_plus(spaces[1])
-        print(params)
         add_anotacao(params)
         return build_response(code=303, reason='See Other', headers='Location: /')
 
@@ -39,8 +37,11 @@ def index(request):
 
     return build_response(body=load_template('index.html').format(notes=notes))
 
-def edit(id):
+def delete(id):
+    db = Database('banco')
+    db.delete(id)
 
+def edit(request, id):
     # A string de request sempre começa com o tipo da requisição (ex: GET, POST)
     if request.startswith('POST'):
         print("a"*100)
@@ -55,13 +56,11 @@ def edit(id):
         # requisição e devolve os parâmetros para desacoplar esta lógica.
         # Dica: use o método split da string e a função unquote_plus
         for chave_valor in corpo.split("&"):
-            print(chave_valor)
             spaces = chave_valor.split("=")
             if spaces[0] == "titulo":
                 params["titulo"] = up.unquote_plus(spaces[1])
             if spaces[0] == "detalhes":
                 params["detalhes"] = up.unquote_plus(spaces[1])
-        print(params)
         add_anotacao(params)
         return build_response(code=303, reason='See Other', headers='Location: /')
 

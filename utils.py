@@ -24,13 +24,14 @@ def load_template(path):
     return file.read()
 
 def add_anotacao(params):
+    print(params)
     # notes = load_data("notes.json")
     # notes.append(params)
     # print(notes)
     # with open("data/notes.json",'w',encoding="utf-8") as myjson:
     #     myjson.write(str(notes).replace("'",'"'))
     db = Database('banco')
-    db.add(Note('',params['title'],params['content']))
+    db.add(Note('',params['titulo'],params['detalhes']))
 
 def build_response(body='', code=200, reason='OK', headers=''):
     if len(headers) > 0:
