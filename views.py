@@ -57,3 +57,6 @@ def update(request, id):
         return build_response(body=load_template('index.html').format(notes=notes), code=303, reason='See Other', headers='Location: /')
     
     return build_response(body=load_template('update.html').format(titulo=note.title, detalhes=note.content))
+
+def error404():
+    return build_response(body=load_template('error404.html'), code=404, reason='Not Found')

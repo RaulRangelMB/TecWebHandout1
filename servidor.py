@@ -1,7 +1,7 @@
 import socket
 from pathlib import Path
 from utils import extract_route, read_file, build_response
-from views import index, deleta, update
+from views import index, deleta, update, error404
 
 CUR_DIR = Path(__file__).parent
 SERVER_HOST = '0.0.0.0'
@@ -33,7 +33,7 @@ while True:
         id = route.split('/')[1]
         response = update(request, id)
     else:
-        response = build_response()
+        response = error404()
     
     client_connection.sendall(response)
 

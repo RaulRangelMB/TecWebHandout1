@@ -42,6 +42,22 @@ body {
   padding: 0.3em 0.8em 0.3em 0.1em;
 }
 
+.logo404{
+  height: 500px;
+  padding: 0.3em;
+}
+
+.title404{
+  color: black;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.content404{
+  color:#4c4c4c;
+  font-size: 1.5rem;
+}
+
 .botoes{
   display: flex;
   flex-direction: row;
