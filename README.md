@@ -1,5 +1,5 @@
-# TecWebHandout1
+# TecWebProjeto1A
 
-Entrega do Projeto A1 de Tecnologias e Desenvolvimento Web
+Projeto 1A de Tecnologias Web
 
-Raul Rangel Moraes Bezerra
+Feito por: Raul Rangel Moraes Bezerra
