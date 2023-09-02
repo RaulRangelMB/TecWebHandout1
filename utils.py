@@ -1,4 +1,3 @@
-import json
 from database import Database, Note
 
 def extract_route(request):
@@ -11,9 +10,6 @@ def read_file(path):
     return lines
 
 def load_data():
-    # filepath = 'data/' + path
-    # file = read_file(filepath)
-    # return json.loads(file)
     db = Database('banco')
     return db.get_all()
 
@@ -23,12 +19,6 @@ def load_template(path):
     return file.read()
 
 def add_anotacao(params):
-    print(params)
-    # notes = load_data("notes.json")
-    # notes.append(params)
-    # print(notes)
-    # with open("data/notes.json",'w',encoding="utf-8") as myjson:
-    #     myjson.write(str(notes).replace("'",'"'))
     db = Database('banco')
     db.add(Note('',params['titulo'],params['detalhes']))
 
