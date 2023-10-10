@@ -21,10 +21,8 @@ def index(request):
     note_template = load_template('components/note.html')
     notes_li = [note_template.format(title=note.title, details=note.content, note_id=note.id) for note in load_data()]
     notes = '\n'.join(notes_li)
-    db = Database('banco')
-    total = len(db.get_all())
 
-    return build_response(body=load_template('index.html').format(notes=notes,total=total))
+    return build_response(body=load_template('index.html').format(notes=notes))
 
 def deleta(id):
     db = Database('banco')
@@ -53,16 +51,12 @@ def update(request, id):
         db.update(note)
         note_template = load_template('components/note.html')
         notes_li = [note_template.format(title=note.title, details=note.content, note_id=note.id) for note in load_data()]
-        total = len(db.get_all())
 
         notes = '\n'.join(notes_li)
 
-        return build_response(body=load_template('index.html').format(notes=notes, total= total), code=303, reason='See Other', headers='Location: /')
+        return build_response(body=load_template('index.html').format(notes=notes), code=303, reason='See Other', headers='Location: /')
     
     return build_response(body=load_template('update.html').format(titulo=note.title, detalhes=note.content))
 
 def error404():
     return build_response(body=load_template('error404.html'), code=404, reason='Not Found')
-
-def prova():
-    return build_response(body=load_template('prova.html'))
