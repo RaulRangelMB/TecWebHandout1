@@ -1,7 +1,7 @@
 import socket
 from pathlib import Path
 from utils import extract_route, read_file, build_response
-from views import index, deleta, update, error404
+from views import index, deleta, update, error404, prova
 
 CUR_DIR = Path(__file__).parent
 SERVER_HOST = '0.0.0.0'
@@ -32,6 +32,8 @@ while True:
     elif route.startswith('update'):
         id = route.split('/')[1]
         response = update(request, id)
+    elif route.startswith('prova'):
+        response = prova()
     else:
         response = error404()
     
